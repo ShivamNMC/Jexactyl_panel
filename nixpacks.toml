@@ -1,7 +1,15 @@
 # nixpacks.toml
 
 [phases.setup]
-nixOverlays = ["./nixpkgs-override.nix"]
+nixPkgs = [
+    "nginx",
+    "php",
+    "php82Packages.composer",
+    "nodejs-18_x",
+    "pnpm",
+    "supervisor"
+]
+nixOverlays = ["/app/nixpkgs-override.nix"]
 
 [phases.install]
 cmds = [
@@ -9,7 +17,8 @@ cmds = [
     "pnpm install",
     "cp .env.example .env",
     "php artisan key:generate --force",
-    "php artisan migrate --seed --force"
+    "php artisan migrate --seed --force",
+    "chmod -R 755 storage/* bootstrap/cache/"
 ]
 
 [phases.build]
@@ -18,7 +27,7 @@ cmds = [
 ]
 
 [start]
-cmd = "php artisan serve --host 0.0.0.0 --port ${PORT:-8080}"
+cmd = "supervisord -c /app/supervisord.conf"
 
 [variables]
 NIXPACKS_PHP_VERSION = "8.2"

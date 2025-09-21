@@ -29,3 +29,17 @@ Jexpanel is a modern, high-performance **game server management panel** built on
 ## Contribution
 
 Contributions are welcome! Please see `CONTRIBUTING.md` and join discussions via Discord or GitHub issues.
+
+## Deployment
+
+This application can be deployed using [Nixpacks](https://nixpacks.com/). When deploying, you will need to set the following environment variables:
+
+- `APP_KEY`: A 32-character random string. You can generate one with `php artisan key:generate --show`.
+- `DB_HOST`: The hostname of your database server.
+- `DB_PORT`: The port of your database server.
+- `DB_DATABASE`: The name of your database.
+- `DB_USERNAME`: The username for your database.
+- `DB_PASSWORD`: The password for your database.
+- `REDIS_HOST`: The hostname of your Redis server.
+- `REDIS_PASSWORD`: The password for your Redis server.
+- `REDIS_PORT`: The port of your Redis server.

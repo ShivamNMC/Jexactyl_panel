@@ -1,2 +1,1 @@
-web: php artisan serve --host 0.0.0.0 --port ${PORT:-8080}
-worker: php artisan queue:work --queue=high,standard,low --sleep=3 --tries=3
+web: supervisord -c /app/supervisord.conf
