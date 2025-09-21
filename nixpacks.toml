@@ -1,4 +1,5 @@
 # nixpacks.toml
+nixpkgs_override_file = "nixpkgs-override.nix"
 
 [phases.install]
 cmds = [
