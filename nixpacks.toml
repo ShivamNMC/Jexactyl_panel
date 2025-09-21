@@ -6,13 +6,12 @@ nixPkgs = [
     "php",
     "php82Packages.composer",
     "nodejs-18_x",
-    "pnpm",
     "supervisor"
 ]
-nixOverlays = ["/app/nixpkgs-override.nix"]
 
 [phases.install]
 cmds = [
+    "npm install -g pnpm@9.0.6",
     "composer install --no-dev --optimize-autoloader",
     "pnpm install",
     "cp .env.example .env",
