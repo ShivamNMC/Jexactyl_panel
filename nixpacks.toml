@@ -1,0 +1,22 @@
+# nixpacks.toml
+
+[phases.install]
+cmds = [
+    "composer install --no-dev --optimize-autoloader",
+    "pnpm install",
+    "cp .env.example .env",
+    "php artisan key:generate --force",
+    "php artisan migrate --seed --force"
+]
+
+[phases.build]
+cmds = [
+    "pnpm build"
+]
+
+[start]
+cmd = "php artisan serve --host 0.0.0.0 --port ${PORT:-8080}"
+
+[variables]
+NIXPACKS_PHP_VERSION = "8.2"
+NIXPACKS_NODE_VERSION = "18"
